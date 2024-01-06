@@ -19,3 +19,9 @@ const cartData = require("../src/data/cart.js");
 
 // Setup & Teardown
 // https://jestjs.io/docs/setup-teardown
+
+// index.test.js
+
+test('Traininig-jest', () => {
+  expect(1 + 1).toBe(2);
+});

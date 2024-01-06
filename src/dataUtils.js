@@ -1,16 +1,3 @@
-// @ Try to check and change the return value of setProductsCards function
-const setProductsCards = (products) => {
-  const productsCards = products.map((product) => {
-    return {
-      price: convertToRupiah(product.price),
-      after_discount: countDiscount(product.price, product.discountPercentage),
-      image: product.thumbnail,
-    };
-  });
-  return productsCards;
-};
-
-// ! Dont change this code
 const convertToRupiah = (price) => {
   const convertedPrice = price * 15_436;
   const rupiah = new Intl.NumberFormat("id-ID", {
@@ -21,9 +8,20 @@ const convertToRupiah = (price) => {
 };
 
 const countDiscount = (price, discount) => {
-  const discountPrice = price * (discount / 100);
-  const afterDiscount = price - discountPrice;
-  return afterDiscount;
+  const discountAmount = price * (discount / 100);
+  const discountedPrice = price - discountAmount;
+  return parseFloat(discountedPrice.toFixed(4)); // Round the result to 4 decimal places
+};
+
+const setProductsCards = (products) => {
+  const productsCards = products.map((product) => {
+    return {
+      price: convertToRupiah(product.price),
+      after_discount: countDiscount(product.price, product.discountPercentage),
+      image: product.thumbnail,
+    };
+  });
+  return productsCards;
 };
 
 module.exports = { setProductsCards, convertToRupiah, countDiscount };
